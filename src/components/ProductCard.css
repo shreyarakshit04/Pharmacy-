@@ -1,0 +1,22 @@
+#addToCartButton{
+    background:linear-gradient(to right,aquamarine, gainsboro);
+    transition: all 0.3s ease;
+    color:black;
+}
+#productCard:hover{
+    cursor: pointer;
+    color: #111;
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    
+    box-shadow: 0px 0px 35px black;
+
+}
+#productCard{
+    border-radius: 12px;
+    border-color:aquamarine ;
+    box-shadow:0px 0px 35px darkgrey;
+
+}
+

@@ -15,7 +15,7 @@ const Home = () => {
 
     const [data,setData]=useState([]);
     const getData=()=>{
-      fetch("Products.json"
+      fetch("http://localhost:3001/products"
       ,{
         headers : { 
           'Content-Type': 'application/json',
@@ -28,6 +28,7 @@ const Home = () => {
           return response.json();
         })
         .then(function(myJson) {
+            console.log(myJson);
           setData(myJson)
         });
     }

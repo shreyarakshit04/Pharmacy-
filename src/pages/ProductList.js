@@ -20,7 +20,7 @@ const ProductList = () => {
     const navigate = useNavigate();
   
     const getData = () => {
-      fetch("http://localhost:3000/Products.json"
+      fetch("http://localhost:3001/products"
         , {
           headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const ProductList = () => {
           return response.json();
         })
         .then(function (myJson) {
-          //   console.log(myJson);
+            // console.log(myJson.products);
           setData(myJson)
         });
     }

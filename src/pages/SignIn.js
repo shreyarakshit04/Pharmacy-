@@ -10,6 +10,7 @@ import { VscKey } from 'react-icons/vsc';
 const SignIn = () => {
     const [loading, setLoading] = useState(false);
     const [theme] = useThemeHook();
+    const [show,setShow] = useState(true);
     const navigate = useNavigate();
 
      const handleSubmitAdmin = (event)=>{
@@ -32,6 +33,7 @@ const SignIn = () => {
             // .then(json=>sessionStorage.setItem("token", json.token))
             .catch(error=> console.error(error))
             .finally(()=>{
+                setShow(false);
                 setLoading(false);
                 navigate('/admin/all-product', {replace: true})
                 alert('Admin Login successful');

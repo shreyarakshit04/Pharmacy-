@@ -10,9 +10,9 @@ import { useCart } from "react-use-cart";
 const Header = () => {
   const { theme, setThemeMode } = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme);
-
+var isAdmin =window.location.pathname.startsWith("/admin")
   // const navigate = useNavigate();
-
+console.log(window.location.pathname);
 console.log(theme);
   useEffect(() => {
     setThemeMode(darkMode);
@@ -33,6 +33,28 @@ console.log(theme);
   // const logout=()=>{
   //   navigate("/sign-in");
   // };
+  const navBtn=()=>{
+    if(isAdmin){
+      return(
+        <></>
+      )
+    }
+    return(
+      <>
+       <Link
+              to="/cart" 
+              className={`${darkMode? 'text-dark-primary': 'text-light-primary'} d-flex align-items-center`} style={{marginRight:"20px",textDecoration:'none'}}>
+              <BiCart size="2rem" />
+              {!isEmpty && <span style={{ position: 'relative', left: '-21px', top: '-18px' }}>{totalItems}</span>}
+              <span style={{ marginLeft: !isEmpty ? '-13px' : 0 }}>&nbsp;Cart</span>
+            </Link>
+            <Link to="my-account" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}style={{marginRight:"24px"}}>
+              <VscAccount size="1.8rem" />
+              &nbsp;My Account
+            </Link>
+      </>
+    )
+  }
 
   return (
     <Navbar collapseOnSelect expand="md"
@@ -55,17 +77,9 @@ console.log(theme);
               onClick={() => setDarkMode(!darkMode)} style={{marginRight:"20px"}}>
               {darkMode ? <BiSun size="1.7rem" /> : <BiMoon size="1.7rem" />}
             </Nav.Link>
-            <Link
-              to="/cart" 
-              className={`${darkMode? 'text-dark-primary': 'text-light-primary'} d-flex align-items-center`} style={{marginRight:"20px",textDecoration:'none'}}>
-              <BiCart size="2rem" />
-              {!isEmpty && <span style={{ position: 'relative', left: '-21px', top: '-18px' }}>{totalItems}</span>}
-              <span style={{ marginLeft: !isEmpty ? '-13px' : 0 }}>&nbsp;Cart</span>
-            </Link>
-            <Link to="my-account" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}style={{marginRight:"24px"}}>
-              <VscAccount size="1.8rem" />
-              &nbsp;My Account
-            </Link>
+          {
+            navBtn()
+          }
             <Link to="/sign-in" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}style={{marginRight:"24px"}}>
               <Button variant="outline-success">Logout</Button></Link>
           </Nav>

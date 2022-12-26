@@ -9,46 +9,47 @@ const AddnewProduct = () => {
     price:"",
     description:"",
     category:"",
-    image:"",
+    // image:[],
     rating:"",
     count:"",
     
   });
+  console.log(formData);
   const handleFormSubmit=(event)=>{
     event.preventDefault();
-    fetch("http://localhost:3000/Products.json"
-        , {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-          },
-          body:{
-            formData
-          }
-        }
-      )
-        .then(function (response) {
-          //   console.log(response)
-          return response.json();
-        });
+    // fetch("http://localhost:3000/Products.json"
+    //     , {
+    //       method: "POST",
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         'Access-Control-Allow-Origin': '*'
+    //       },
+    //       body:{
+    //         formData
+    //       }
+    //     }
+    //   )
+    //     .then(function (response) {
+    //       //   console.log(response)
+    //       return response.json();
+    //     });
         
-    // let response=  axios.post("Products.json",formData);
-    // console.log(response);
-    // if(response){
-    //   alert("data inserted successfully");
-    // }
-    // else{
-    //   alert("problem arouse");
-    // }
+    let response=  axios.post("http://localhost:3001/products",formData);
+    console.log(response);
+    if(response){
+      alert("data inserted successfully");
+    }
+    else{
+      alert("problem arouse");
+    }
 
     setFormData({
       title:"",
     price:"",
     description:"",
     category:"",
-    image:"",
+    // image:[],
     rating:"",
     count:"",
     });
@@ -91,10 +92,10 @@ const AddnewProduct = () => {
     <Form.Label>Count</Form.Label>
     <Form.Control type="text" value={formData.count} onChange={(e)=>setFormData({...formData,count:e.target.value})} />
   </Form.Group>
-  <Form.Group controlId="formFile" className="mb-3">
+  {/* <Form.Group controlId="formFile" className="mb-3">
     <Form.Label>Upload Product Image</Form.Label>
-    <Form.Control type="file" value={formData.image} onChange={(e)=>setFormData({...formData,image:e.target.value})}/>
-  </Form.Group>
+    <Form.Control type="file" value={formData.image} onChange={(e)=>setFormData({...formData,image:e.target.files[0]})}/>
+  </Form.Group> */}
   
   <Button variant="success" type='submit'>
     Submit

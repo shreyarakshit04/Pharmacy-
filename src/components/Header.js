@@ -5,13 +5,14 @@ import { BiSun, BiMoon, BiCart } from 'react-icons/bi';
 import { VscAccount } from 'react-icons/vsc';
 import { Link, useNavigate } from "@reach/router";
 import { useCart } from "react-use-cart";
+import { RiLogoutCircleRLine } from 'react-icons/ri';
 
 
 const Header = () => {
   const { theme, setThemeMode } = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme);
 var isAdmin =window.location.pathname.startsWith("/admin")
-  // const navigate = useNavigate();
+
 console.log(window.location.pathname);
 console.log(theme);
   useEffect(() => {
@@ -24,15 +25,6 @@ console.log(theme);
     totalItems,
   } = useCart();
 
-  // const logout = () => {
-  
-  //   navigate("/new-product");
-  // };
- 
-
-  // const logout=()=>{
-  //   navigate("/sign-in");
-  // };
   const navBtn=()=>{
     if(isAdmin){
       return(
@@ -63,9 +55,9 @@ console.log(theme);
       style={{ width: '100%', position: 'fixed', zIndex: 100,boxShadow:"0px 0px 15px grey" }}
     >
       <Container>
-        <Link to="/" style={{textDecoration:'none'}}>
+        <Link to="/home" style={{textDecoration:'none'}}>
           <Navbar.Brand className={darkMode? 'text-dark-primary': 'text-light-primary'}>
-            <b style={{color:"darkgreen", fontSize:"30px"}}>Easy Pharmacy</b>
+            <b style={{color:"orange", fontSize:"30px"}}>Pharmacy</b>
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -80,13 +72,14 @@ console.log(theme);
           {
             navBtn()
           }
-            <Link to="/sign-in" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}style={{marginRight:"24px"}}>
-              <Button variant="outline-success">Logout</Button></Link>
+            <Link to="/" className={`nav-link ${darkMode? 'text-dark-primary': 'text-light-primary'}`}style={{marginRight:"24px"}}>
+              <Button variant="outline-success"style={{backgroundColor:"orange",borderColor:"white",color:"white",borderRadius:"8px"}}><RiLogoutCircleRLine style={{marginRight:"15px"}}/>Logout</Button></Link>
           </Nav>
           
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    
   );
 };
 

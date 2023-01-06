@@ -20,15 +20,15 @@ function App() {
       <GlobalProvider>
       <Header/>
       <Router>
-        <Home path="/" />
+        <Home path="/home" />
         <MyAccount path="my-account" />
-        {/* <AdminAllProducts path="all-product"/> */}
+       
         <ProductList path ="admin/all-product"/>
         <AddnewProduct path="admin/new-product"/>
-        {/* <AdminPage path="admin"/> */}
-        <SignIn path="sign-in"/>
+        
+        <SignIn path="/"/>
         <SignUp path="sign-up"/>
-        {/* <Register path="register"/> */}
+       
         <SingleProduct  path="product-details/:productId"/>
        
         <Cart path="/cart" />

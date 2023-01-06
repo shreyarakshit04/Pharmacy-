@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Form, Spinner, InputGroup} from 'react-boo
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { Link, useNavigate } from "@reach/router";
 
-//icons
+
 import { AiOutlineUser } from 'react-icons/ai';
 import { VscKey } from 'react-icons/vsc';
 
@@ -30,7 +30,7 @@ const SignIn = () => {
                     password: password
                 })
             }).then(res=>res.json())
-            // .then(json=>sessionStorage.setItem("token", json.token))
+           
             .catch(error=> console.error(error))
             .finally(()=>{
                 setShow(false);
@@ -58,11 +58,11 @@ const SignIn = () => {
                     password: password
                 })
             }).then(res=>res.json())
-            // .then(json=>sessionStorage.setItem("token", json.token))
+           
             .catch(error=> console.error(error))
             .finally(()=>{
                 setLoading(false);
-                navigate('/', {replace: true})
+                navigate('/home', {replace: true})
                 alert('User Login successful');
             })
         }
@@ -91,27 +91,16 @@ const SignIn = () => {
                             type="submit"
                             className={` m-auto d-block`}
                             // disabled={loading}
-                            style={{border: 0,backgroundColor:"purple"}}
+                            style={{border: 0,backgroundColor:"orange"}}
                         > Sign In
-                        {/* {loading? 
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="grow"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                &nbsp;Loading...
-                            </> : 'Sign in'
-                        } */}
+                        
                         </Button>
                         <Form.Group className="mt-3 text-center">
                             <Form.Text className="text-muted fw-bold">
                                 New to E-cart?
                             </Form.Text>
                             <Row className="py-2 border-bottom mb-3"/>
-                            <Link to='/sign-up' className="btn rounded-0" style={{border: 0,backgroundColor:"purple" ,color:"white"}}>
+                            <Link to='/sign-up' className="btn rounded-0" style={{border: 0,backgroundColor:"orange" ,color:"white"}}>
                                 Create your E-cart account 
                             </Link>
                         </Form.Group>
@@ -137,28 +126,17 @@ const SignIn = () => {
                         <Button
                             type="submit"
                             className={` m-auto d-block`}
-                            // disabled={loading}
-                            style={{border: 0,backgroundColor:"purple"}}
+                           
+                            style={{border: 0,backgroundColor:"orange"}}
                         > Sign In
-                        {/* {loading? 
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="grow"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                &nbsp;Loading...
-                            </> : 'Sign in'
-                        } */}
+                        
                         </Button>
                         <Form.Group className="mt-3 text-center">
                             <Form.Text className="text-muted fw-bold">
                                 New to E-cart?
                             </Form.Text>
                             <Row className="py-2 border-bottom mb-3"/>
-                            <Link to='/sign-up' className="btn rounded-0" style={{border: 0,backgroundColor:"purple" ,color:"white"}}>
+                            <Link to='/sign-up' className="btn rounded-0" style={{border: 0,backgroundColor:"orange" ,color:"white"}}>
                                 Create your E-cart account 
                             </Link>
                         </Form.Group>

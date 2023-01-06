@@ -9,7 +9,7 @@ import {BsFillStarFill} from "react-icons/bs";
 import './ProductCard.css';
 
 const ProductCard = (props) => {
-    let { image, price, title, id, description, category, rating, count } = props.data;
+    let { image, price, title, id, category, rating } = props.data;
     const [theme] = useThemeHook();
     const { addItem } = useCart();
 
@@ -31,12 +31,12 @@ const ProductCard = (props) => {
         <>
 
             <Card id="productCard"
-                style={{ width: '18rem', height: 'auto' }}
-                className={`${theme ? 'bg-light-black text-light' : 'bg-lihgt text-black'} text-center p-0 overflow-hidden shadow mx-auto mb-4`}
+                style={{ width: '18rem', height: 'auto',borderColor:"orange",background:"transparent" }}
+                className={`${theme? 'bg-light-black text-light' : 'bg-light text-black'} text-center p-0 overflow-hidden shadow mx-auto mb-4`}
             >
                  <Link to={`/product-details/${id}`}>
                     <div style={{
-                        background: 'white', height: '15rem', overflow: 'hidden', display: 'flex',
+                        background: 'transparent', height: '15rem', overflow: 'hidden', display: 'flex',
                         justifyContent: 'center', alignItems: 'center', marginBottom: 'inherit'
                     }}>
                         <div style={{ width: '9rem' }}>
@@ -50,22 +50,22 @@ const ProductCard = (props) => {
                     </Card.Title>
                     <Card.Title>
                     <Badge pill bg="secondary">{category}</Badge>
-                        {/* <h6>{category}</h6> */}
+               
                     </Card.Title>
                     <Card.Title>
                        <h6> MRP <span>Rs.</span> <span className="h6">{price}</span></h6>
                     </Card.Title>
                     <Card.Title>
-                        <BsFillStarFill size="0.8rem" style={{color:"gold"}}/>
+                        
                         <span className="h6">{rating}</span>
-                       
+                        <BsFillStarFill size="0.8rem" style={{color:"gold", marginLeft:"8px"}}/>
                     </Card.Title>
-                    <Button id="addToCartButton"
+                    <Button id="addToCartButton" 
                         onClick={() => addToCart()}
-                        className={`${theme ? 'bg-dark-primary text-black' : 'bg-light-primary'} d-flex align-item-center m-auto border-0`}
-                       
+                        className={ "d-flex align-item-center m-auto border-0"}
+                       style={{backgroundColor:"orange"}}
                     >
-                        <BsCartPlus size="1.8rem" />
+                        <BsCartPlus size="1.8rem" style={{marginRight:"10px"}}/>
                         Add to cart
                     </Button>
                 </Card.Body>

@@ -9,7 +9,7 @@ const AddnewProduct = () => {
     price:"",
     description:"",
     category:"",
-    // image:[],
+    image:"",
     rating:"",
     count:"",
     
@@ -17,23 +17,8 @@ const AddnewProduct = () => {
   console.log(formData);
   const handleFormSubmit=(event)=>{
     event.preventDefault();
-    // fetch("http://localhost:3000/Products.json"
-    //     , {
-    //       method: "POST",
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'Access-Control-Allow-Origin': '*'
-    //       },
-    //       body:{
-    //         formData
-    //       }
-    //     }
-    //   )
-    //     .then(function (response) {
-    //       //   console.log(response)
-    //       return response.json();
-    //     });
+    console.log(formData);
+    
         
     let response=  axios.post("http://localhost:3001/products",formData);
     console.log(response);
@@ -49,20 +34,21 @@ const AddnewProduct = () => {
     price:"",
     description:"",
     category:"",
-    // image:[],
+    image:"",
     rating:"",
     count:"",
     });
     console.log(formData);
   }
-  // useEffect(() => {
-  //   handleFormSubmit()
-  // }, [])
+  
 
 
   return (
     <div>
     <Container className="py-4 mt-5">
+      <div className='mt-2'>
+        <h3>Add Product</h3>
+      </div>
    <Form onSubmit={handleFormSubmit}>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Tille</Form.Label>
@@ -92,13 +78,13 @@ const AddnewProduct = () => {
     <Form.Label>Count</Form.Label>
     <Form.Control type="text" value={formData.count} onChange={(e)=>setFormData({...formData,count:e.target.value})} />
   </Form.Group>
-  {/* <Form.Group controlId="formFile" className="mb-3">
+  <Form.Group controlId="formFile" className="mb-3">
     <Form.Label>Upload Product Image</Form.Label>
-    <Form.Control type="file" value={formData.image} onChange={(e)=>setFormData({...formData,image:e.target.files[0]})}/>
-  </Form.Group> */}
+    <Form.Control type="text" value={formData.image} onChange={(e)=>setFormData({...formData,image:e.target.value})}/>
+  </Form.Group>
   
-  <Button variant="success" type='submit'>
-    Submit
+  <Button variant="info" type='submit'>
+    Add To List
   </Button>
 </Form>
 </Container>

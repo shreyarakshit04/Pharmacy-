@@ -6,6 +6,7 @@ import { BsCartCheck, BsCartX } from 'react-icons/bs';
 import { Context } from '../context/orderContext';
 import { useNavigate } from '@reach/router';
 import '../components/ProductCard.css';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -28,7 +29,7 @@ const Cart = () => {
 
     return (
         <Container className="py-4 mt-5">
-            <h1 className={`${theme ? 'text-light' : 'text-light-primary'} my-5 text-center`}>
+            <h1 className={`my-5 text-center`} style={{color:"orange"}}>
                 {isEmpty ? 'Your Cart is Empty' : 'My Cart'}
             </h1>
             <Row className="justify-content-center">
@@ -39,10 +40,10 @@ const Cart = () => {
                                 <tr key={index}>
                                     <td>
                                         <div style={{
-                                            background: 'white', height: '6rem', overflow: 'hidden', display: 'flex',
+                                            background: 'transparent', height: '6rem', overflow: 'hidden', display: 'flex',
                                             justifyContent: 'center', alignItems: 'center'
                                         }}>
-                                            <div style={{ padding: '.5rem' }}>
+                                            <div style={{ padding: '.5rem',background:"transparent" }}>
                                                 <img src={item.image} style={{ width: '4rem' }} alt={item.title} />
                                             </div>
                                         </div>
@@ -52,7 +53,7 @@ const Cart = () => {
                                             {item.title}
                                         </h5>
                                     </td>
-                                    <td style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    <td style={{ justifyContent: 'center', alignItems: 'center' ,marginTop:"2px"}}>
                                         <h5>Rs. {item.price}</h5></td>
 
                                     <td style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -60,7 +61,7 @@ const Cart = () => {
                                         <Button  style={{backgroundColor:"#FFD700",borderColor:"white",borderRadius: "1px"}} onClick={() => updateItemQuantity(item.id, item.quantity - 1)} >-</Button>
                                         <Button style={{backgroundColor:"#FFD700",borderColor:"white",borderRadius: "1px"}} >{item.quantity}</Button>
                                         <Button  style={{ backgroundColor:"#FFD700",borderColor:"white",borderRadius: "1px" }}  className="me-4" onClick={() => updateItemQuantity(item.id, item.quantity + 1)}>+</Button>
-                                        <Button style={{backgroundColor:"#FFD700",borderColor:"#FFD700"}} onClick={() => removeItem(item.id)} className="ms-4">Remove</Button>
+                                        <Button style={{backgroundColor:"#FFD700",borderColor:"#FFD700"}} onClick={() => removeItem(item.id)} className="ms-4"><RiDeleteBinLine/></Button>
                                     </td>
                                 </tr>
                             )
@@ -81,13 +82,13 @@ const Cart = () => {
                                 style={{ background: "#FFD700", borderColor:"#FFD700"  }}
                                 onClick={() => emptyCart()}
                             >
-                                <BsCartX size="1.7rem" />
+                                <BsCartX size="1.7rem" style={{marginRight:"15px"}}/>
                                 Clear Cart
                             </Button>
                             <Button size="lg" onClick={placeOrder}
                                 className="m-2" style={{ background: "orange", borderColor:"orange"  }}
                             >
-                                <BsCartCheck size="1.7rem" />
+                                <BsCartCheck size="1.7rem" style={{marginRight:"15px"}}/>
                                 Place Order
                             </Button>
                         </Col>

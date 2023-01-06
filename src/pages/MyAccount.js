@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Container, Row, Col, Tab, Nav, Image, Form, Button, Badge } from 'react-bootstrap';
-import { useThemeHook } from '../GlobalComponents/ThemeProvider';
+import React from 'react';
+import { Container, Row, Col, Tab, Nav, Image } from 'react-bootstrap';
+
 import Heading from '../components/Heading';
 import profile from '../Images/profile.png';
 import { FaClipboardList, FaAngleRight } from 'react-icons/fa';
@@ -8,9 +8,10 @@ import OrderCard from '../components/OrderCard';
 import './MyAccount.css';
 
 import { useCart } from 'react-use-cart';
+import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 
 const MyAccount = () => {
-    // const [theme] = useThemeHook();
+    const [theme] = useThemeHook();
 
     const {
 
@@ -22,10 +23,10 @@ console.log(items);
 
     return (
         <Container className="py-5 mt-5">
-            <Heading heading="MY ACCOUNT" />
+            <h1  style={{color:"orange",textAlign:"center"}}>MY ACCOUNT</h1>
             <Tab.Container defaultActiveKey="my-orders">
                 <Row className="justify-content-evenly mt-4 p-1">
-                    <Col sm={3} className="text-black bg-light p-2 rounded h-100 mb-3 user-menu">
+                    <Col sm={3} className={`${theme ? 'bg-light-black text-light' : 'bg-light text-balck'} p-2 rounded h-100 mb-3 user-menu`}>
                         <Row className="mb-3 py-2">
                             <Col xs={3} className="pe-0">
                                 <Image
@@ -40,9 +41,9 @@ console.log(items);
                                 <h5>Hello,User</h5>
                             </Col>
                         </Row>
-                        <Nav variant="pills" className="flex-column">
+                        <Nav variant="pills" className="flex-column" >
                             <Nav.Item className="mb-3">
-                                <Nav.Link eventKey="my-orders">
+                                <Nav.Link eventKey="my-orders"style={{backgroundColor:"orange",color:"white"}}>
                                     <FaClipboardList size="1.4rem" />
                                     MY ORDERS
                                     <FaAngleRight size="1.4rem" style={{ float: "right" }} />
@@ -52,10 +53,10 @@ console.log(items);
                             </Nav.Item>
                         </Nav>
                     </Col>
-                    <Col sm={8} className="text-black bg-light p-2 rounded">
-                        <Tab.Content>
+                    <Col sm={8} className={`${theme? 'text-light bg-dark' : 'text-black bg-light'} p-2 rounded`}>
+                        <Tab.Content >
                             <Tab.Pane eventKey="my-orders">
-                                <Heading heading=" MY ORDERS" size="h3" />
+                                <Heading heading=" MY ORDERS" size="h3" style={{color:"orange"}} />
 
                                 {
                                     items && items.map(item => (

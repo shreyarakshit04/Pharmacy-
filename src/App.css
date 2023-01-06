@@ -11,10 +11,10 @@ bg-black{
     color: #262626;
   }
   .bg-dark-primary{
-    background-color: aquamarine !important;
+    background-color: orange !important;
   }
   .text-dark-primary{
-    color: aquamarine !important;
+    color: orange !important;
   }
   .btn-dark{
     border-color:gold;

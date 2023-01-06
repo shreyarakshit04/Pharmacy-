@@ -8,9 +8,12 @@ import ProductCard from '../components/ProductCard';
 import { Toaster } from 'react-hot-toast';
 
 
+
+
 const Home = () => {
     const [theme] = useThemeHook();
     const [searchInput, setSearchInput] = useState('');
+   
    
 
     const [data,setData]=useState([]);
@@ -38,16 +41,16 @@ const Home = () => {
     console.log(data);
 
     return (
-        <Container className="py-4">
+        <Container className="py-4 mt-5">
             <Row className="justify-content-center">
                 <Col xs={10} md={5} lg={6} xl={4} className="mb-3 mx-auto text-center">
-                <h4 className={theme? 'text-light my-5': 'text-black my-5'}>Search products</h4>
-                    <InputGroup className="mb-3">
+                <h2 className={theme? 'text-light my-5': 'text-black my-5'}></h2>
+                    <InputGroup className="mb-2">
                         <InputGroup.Text className={theme? 'bg-black text-dark-primary': 'bg-light text-light-primary'}>
                             <BiSearch size="2rem" />
                         </InputGroup.Text>
                         <FormControl 
-                            placeholder="Search Products"
+                            placeholder="Search Products by name,category"
                             value={searchInput}
                             onChange={(event)=> setSearchInput(event.target.value)}
                             className={theme? 'bg-light-black text-light': 'bg-light text-black'}
@@ -58,13 +61,16 @@ const Home = () => {
                 <SearchFilter 
                     value={searchInput}
                     data={data}
+                    
 
                     renderResults={results =>(
+                        
                         <Row className="justify-content-center">
                             {results.map((item, i)=>(
                                 <ProductCard data={item} key={i} />
                             ))}
                         </Row>
+
                     )}
                 />
                 

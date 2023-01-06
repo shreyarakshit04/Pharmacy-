@@ -130,37 +130,20 @@
 
 // export default SingleProduct;
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Badge } from 'react-bootstrap';
 import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import Lightbox from 'react-lightbox-component';
 import 'react-lightbox-component/build/css/index.css';
 import './SingleProduct.css';
 import { useCart } from 'react-use-cart';
-import { BsCartPlus } from 'react-icons/bs';
+import { BsCartPlus, BsFillStarFill } from 'react-icons/bs';
 import { useParams } from '@reach/router';
 import axios from 'axios';
 
 const SingleProduct = () => {
 
     const [data, setData] = useState([]);
-    // const getData = async() => {
-    //    await fetch("https://res.cloudinary.com/dh9ziealg/raw/upload/Products_shwow9.json"
-    //         , {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json'
-    //             }
-    //         }
-    //     )
-    //         .then(function (response) {
-    //             console.log(response)
-    //             return response.json();
-    //         })
-    //         .then(function (myJson) {
-    //             console.log(myJson);
-    //             setData(myJson)
-    //         });
-    // }
+   
     
     useEffect(() => {
         if(data.length==0)
@@ -171,7 +154,7 @@ const SingleProduct = () => {
     }, [])
 
 const getData=async()=>{
-    await axios.get("https://res.cloudinary.com/dh9ziealg/raw/upload/Products_shwow9.json")
+    await axios.get("http://localhost:3001/products")
     .then((res)=>{
         console.log(res);
         res.data.map((prod)=>{
@@ -192,27 +175,11 @@ const getData=async()=>{
     const [theme] = useThemeHook();
     const { addItem } = useCart();
 
-    // useEffect(() => {
-    //     getResponse();
-    // }, []);
     const params = useParams();
     console.log(params);
     console.log(data);
     
-    
-    // data={data}
-
-    // const getResponse = async () => {
-    //     console.log(data);
-    //     // const res = data?data.find(prod =>
-    //     //     prod.id === params.productId
-    //     // ):null;
-    //     const res="";
-       
-    //     console.log(res);
-    //     setProductData(res);
-    //     // console.log(props);
-    // }
+   
     return (
         <Container id="productContainer" className="py-5">
             {productData?
@@ -240,29 +207,50 @@ const getData=async()=>{
                                 src: productData.image?productData.image:"",
                                 title: productData.title?productData.title:"",
                                 description: 'img 4'
+                            },
+                            {
+                                src: productData.image?productData.image:"",
+                                title: productData.title?productData.title:"",
+                                description: 'img 5'
                             }
                         ]}
                     />
                 </Col>
                 <Col xs={10} md={7} lg={7} className={`${theme ? 'text-light' : 'text-black'} product-details`}>
-                    <h1>{productData?productData.title:""}</h1>
-                    <Button
-                        onClick={() => addItem(productData)}
-                        className={theme ? 'bg-dark-primary text-black' : 'bg-light-primary'}
-                        style={{ borderRadius: '0', border: 0 }}
-                    >
-                        <BsCartPlus size="1.8rem" />
-                        Add to cart
-                    </Button>
-                    <br />
+                    <br/>
+                    <h3>{productData?productData.title:""}</h3>
+                    <br/>
+                    <Badge pill bg="warning" id="badge">
+                        {productData?productData.category:""}
+                        </Badge>
+                    
+                     
                     <b className={`${theme ? 'text-dark-primary' : 'text-light-primary'} h4 mt-3 d-block`}>
-                        Rs. {productData?productData.price:""}
+                      <h5> MRP  <span>Rs. </span> <span className="h5">{productData?productData.price:""}</span></h5>
                     </b>
-                    <br />
-                    <b className="h5">4.1 ⭐</b>
+                    <br/>
+                    <div style={{display:"flex"}}>
+                    <BsFillStarFill size="1.4rem" style={{color:"gold"}}/>
+                    <span>  <h5 className="h5 ms-2">{productData?productData.rating:""}</h5></span>
+                    </div>
+                    
+                   
+
                     <p className="mt-3 h5" style={{ opacity: '0.8', fontWeight: '400' }}>
                         {productData?productData.description:""}
                     </p>
+                    <Button id="addToCartBtn"
+                        onClick={() => addItem(productData)}
+                        // className={theme ? 'bg-dark-primary text-black' : 'bg-light-primary'}
+                        style={{ borderRadius: '8px', border: 0 }}
+                    >
+                        <BsCartPlus size="1.8rem" style={{marginRight:"14px"}}/>
+                        Add to cart
+                    </Button>
+                   
+                    <br />
+                    
+                    
                 </Col>
             </Row>
             </>:null}

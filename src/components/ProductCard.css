@@ -1,7 +1,7 @@
 #addToCartButton{
-    background:linear-gradient(to right,aquamarine, gainsboro);
+   background-color: orange;
     transition: all 0.3s ease;
-    color:black;
+    color:white;
 }
 #productCard:hover{
     cursor: pointer;
